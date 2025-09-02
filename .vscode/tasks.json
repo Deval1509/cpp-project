@@ -1,26 +1,23 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "Build with MSVC",
-			"command": "cl.exe",
-			"args": [
-				"/Zi",
-				"/std:c++latest",
-				"/EHsc",
-				"/Fe:",
-				"${fileDirname}\\rooster.exe",
-				"${workspaceFolder}\\*.cpp"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": "build",
-			"detail": "compiler: cl.exe"
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build with MSVC and vcvars64",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "\"call \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat\" && cl /Zi /std:c++latest /EHsc /Fe:${fileDirname}\\rooster.exe ${file}\""
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$msCompile"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Run vcvars64.bat and then compile current file"
+    }
+  ]
 }
